@@ -1,0 +1,115 @@
+﻿@model IEnumerable<ControlReceitaDespesas.Models.RecDes>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutControleF.cshtml";
+}
+
+<section class="category-wrapper">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-1 col-sm-1">
+
+            </div>
+            <div class="col-md-10 col-sm-10">
+                @using (Html.BeginForm("Index", "Controles", FormMethod.Get))
+                {
+                    <div class="category-header no-margin-bottom">
+                        <div class="row">
+                            <div class="col-md-3  cat-search-input">
+                                <input class="form-control" type="date" name="datade" required />
+                            </div>
+                            <div class="col-md-3  cat-search-input">
+                                <input class="form-control" type="date" name="dataate" required />
+                            </div>
+                            <div class="col-md-3 text-right  cat-search-input">
+                                <select class="form-control" name="categoria">
+                                    <option>Receitas e Despesas</option>
+                                    <option>Receita</option>
+                                    <option>Despesa</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3  cat-search-input">
+                                <button class="btn btn-block btn-custom" type="submit">Listar</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="search-results-box">
+                    <div class="row">
+                        <div class="col-md-12 search-results">
+                            Ultimos lançamentos de Receitas e Despesas(tente filtrar para ter um resultado mais detalhado ;) )
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-11">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title text-left">Ultimos Lançamentos</h4>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>@Html.DisplayNameFor(model => model.Valor)</th>
+                                        <th>@Html.DisplayNameFor(model => model.Categoria)</th>
+                                        <th>@Html.DisplayNameFor(model => model.Data)</th>
+                                        <th>@Html.DisplayNameFor(model => model.Observacao)</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Categoria)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Data)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Observacao)</td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.RecDesID }, htmlAttributes: new { @class = "label label-success" }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.RecDesID }, htmlAttributes: new { @class = "label label-warning" }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.RecDesID }, htmlAttributes: new { @class = "label label-danger" })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                                @Html.ActionLink("Novo Registro", "Create", new { }, htmlAttributes: new { @class = "label label-success" })
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+        @using (Html.BeginForm("Relatorio", "Controles", FormMethod.Get, htmlAttributes: new { @class = "form-inline" }))
+        {
+            <button type="reset" class="btn btn-info" ng-click="toggleTooltip($event)">>> Gerar relatorio <<</button>
+            <div ng-click="$event.stopPropagation()" ng-show="showtooltip">
+                <div class="category-header no-margin-bottom">
+                    <div class="row">
+                        <div class="col-md-3 text-right  cat-search-input">
+                            <input type="date" class="form-control" name="datade" required />
+                        </div>
+                        <div class="col-md-3 text-right  cat-search-input">
+                            <input type="date" class="form-control" name="dataate" required />
+                        </div>
+                        <div class="col-md-3 text-right  cat-search-input">
+                            <select class="form-control" name="categoria">
+                                <option>Unificada</option>
+                                <option>Agrupada</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 text-right  cat-search-input">
+                            <button type="submit" class="btn btn-block btn-custom">Gerar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+

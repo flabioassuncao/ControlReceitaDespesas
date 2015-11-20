@@ -1,0 +1,288 @@
+﻿@model IEnumerable<ControlReceitaDespesas.Models.RecDes>
+@{
+    ViewBag.Title = "Relatorio";
+    Layout = "~/Views/Shared/_LayoutControleF.cshtml";
+}
+<section class="category-wrapper">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-1 col-sm-1">
+            </div>
+            <div class="col-md-10 col-sm-10">
+                @using (Html.BeginForm("GerarPdf", "Controles", FormMethod.Get))
+                {
+                    <div class="category-header no-margin-bottom">
+                        <div class="row">
+                            <div class="col-md-3  cat-search-input">
+                                <input class="form-control" type="date" name="datade" value="@ViewBag.DataDe" required />
+                            </div>
+                            <div class="col-md-3  cat-search-input">
+                                <input class="form-control" type="date" name="dataate" value="@ViewBag.DataAte" required />
+                            </div>
+                            <div class="col-md-3 text-right  cat-search-input">
+                                @if (ViewBag.Tipo == "Unificada")
+                                {
+                                    <select class="form-control" name="categoria">
+                                        <option selected>Unificada</option>
+                                        <option>Agrupada</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select class="form-control" name="categoria">
+                                        <option>Unificada</option>
+                                        <option selected>Agrupada</option>
+                                    </select>
+                                }
+                            </div>
+                            <div class="col-md-3  cat-search-input">
+                                <button class="btn btn-block btn-custom" type="submit">Gerar PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="col-md-12 col-sm-11">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title text-left">Relatorio do tipo @ViewBag.Tipo</h4>
+                        </div>
+                        <div class="panel-body">
+
+
+                            @if (ViewBag.Tipo == "Agrupada")
+                            {
+
+                                <table class="table table-bordered">
+                                    <tr class="active">
+                                        <th>
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Categoria)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Valor)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Data)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Observacao)
+                                        </th>
+                                    </tr>
+
+                                    <tr class="active">
+                                        <th>
+                                        </th>
+                                        <th>
+                                            <b>Receitas</b>
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                    </tr>
+
+                                    @{
+                                        decimal valorReceitas = 0;
+                                    }
+
+                                    @foreach (var item in Model.Where(g => g.Categoria == "Receita"))
+                                    {
+                                        <tr>
+                                            <th>
+                                            </th>
+                                            <td></td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Valor)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Data)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Observacao)
+                                            </td>
+                                        </tr>
+
+                                        valorReceitas += item.Valor;
+                                    }
+
+
+                                    <tr class="active">
+                                        <td></td>
+                                        <td>
+                                            Somatório
+                                        </td>
+                                        <td>
+                                            <b> R$@valorReceitas</b>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr class="active">
+                                        <th>
+                                        </th>
+                                        <th>
+                                            <b>Despesas</b>
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                    </tr>
+
+                                    @{
+                                        decimal valorDespesas = 0;
+                                    }
+
+
+                                    @foreach (var item in Model.Where(g => g.Categoria == "Despesa"))
+                                    {
+                                        <tr>
+                                            <th>
+                                            </th>
+                                            <td></td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Valor)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Data)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Observacao)
+                                            </td>
+                                        </tr>
+
+                                        valorDespesas += item.Valor;
+                                    }
+
+
+                                    <tr class="active">
+                                        <td></td>
+                                        <td>
+                                            Somatório
+                                        </td>
+                                        <td>
+                                            <b>R$@valorDespesas</b>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <b>Somátorio Geral</b>
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            @{
+                                                decimal somatorio = valorReceitas - valorDespesas;
+
+                                                <b>R$@somatorio</b>
+                                            }
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+
+                                    </tr>
+
+
+
+                                </table>
+                                                }
+                                                else
+                                                {
+                                                    <table class="table table-bordered">
+                                                        <tr class="active">
+                                                            <th>
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => model.Categoria)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => model.Valor)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => model.Data)
+                                                            </th>
+                                                            <th>
+                                                                @Html.DisplayNameFor(model => model.Observacao)
+                                                            </th>
+                                                        </tr>
+
+                                                        @foreach (var item in Model)
+                                                        {
+                                                            <tr>
+                                                                <th>
+
+                                                                </th>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Categoria)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Valor)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Data)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Observacao)
+                                                                </td>
+                                                            </tr>
+                                                        }
+
+                                                        @{
+                                                            decimal valorReceitas = 0, valorDespesas = 0;
+
+
+                                                            foreach (var item in Model.Where(g => g.Categoria == "Receita"))
+                                                            {
+                                                                valorReceitas += item.Valor;
+                                                            }
+
+                                                            foreach (var item in Model.Where(g => g.Categoria == "Despesa"))
+                                                            {
+                                                                valorDespesas += item.Valor;
+                                                            }
+
+                                                            decimal somatorio = valorReceitas - valorDespesas;
+                                                        }
+
+                                                        <tr>
+                                                            <td>
+                                                                <b>Somátorio Geral</b>
+                                                            </td>
+                                                            <td></td>
+                                                            <td>
+                                                                @{
+
+                                                                    <b>R$@somatorio</b>
+                                                                }
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+
+                                                    </table>
+                                                                    }
+                            @Html.ActionLink("Voltar", "Index", new { }, htmlAttributes: new { @class = "label label-success" })
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

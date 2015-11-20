@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_LayoutControleF.cshtml";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<section class="category-wrapper">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-1 col-sm-1">
+
+            </div>
+            <div class="col-md-10 col-sm-10">
+                <div class="category-header no-margin-bottom">
+                    <div class="row">
+                        <div class="col-md-3  cat-search-input">
+                            <input class="form-control" type="date" />
+                        </div>
+                        <div class="col-md-3  cat-search-input">
+                            <input class="form-control" type="date" />
+                        </div>
+                        <div class="col-md-3 text-right  cat-search-input">
+                            <select class="form-control">
+                                <option>Receita</option>
+                                <option>Despesa</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3  cat-search-input">
+                            <input class="btn btn-block btn-custom" value="Pesquisar" />
+                        </div>
+                    </div>
+                </div>
+                <div class="search-results-box">
+                    <div class="row">
+                        <div class="col-md-12 search-results">
+                            Ultimos lançamentos de Receitas e Despesas (tente filtar para ter um resultado mais detalhado ;) )
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-11">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title text-left">My Ads</h4>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>outro</th>
+                                        <th>Photo</th>
+                                        <th>Details</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th style="width:10%">Option</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td><img alt="" class="thumb-img img-responsive" src="assets/img/products/product-6.jpg"></td>
+                                        <td>
+                                            <div class="item-title"><a href="detail.html" target="_blank"><strong>Samsung Tab 3 V 116</strong></a></div>
+                                            <div class="item-meta">
+                                                <ul>
+                                                    <li class="item-date"><i class="fa fa-clock-o"></i> Today 10.35 am</li>
+                                                    <li class="item-location"><a href="category.html"><i class="fa fa-map-marker"></i> Manchester</a></li>
+                                                    <li class="item-type"><i class="fa fa-bookmark"></i> Used</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        <td><strong>$50</strong></td>
+                                        <td>Active</td>
+                                        <td>
+                                            <ul class="actions-table">
+                                                <li><a class="label label-success"><i class="fa fa-pencil"></i> edit</a></li>
+                                                <li><a class="label label-warning"><i class="fa fa-close"></i> disable</a></li>
+                                                <li><a href="#" class="label label-danger" onclick="return confirm('Remove this item?')"><i class="fa fa-trash"></i> delete</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                            <a class="label label-success right"><i class="fa fa-pencil"></i> Novo Registro</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

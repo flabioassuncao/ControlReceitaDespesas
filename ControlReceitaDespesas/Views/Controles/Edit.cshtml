@@ -1,0 +1,77 @@
+﻿@model ControlReceitaDespesas.Models.RecDes
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutControleF.cshtml";
+}
+
+<h2>Edit</h2>
+<script type="text/javascript">function SubstituiVirgulaPorPonto(Valor){Valor.value = Valor.value.replace(".", ",");}</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    
+        <h4>RecDes</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.RecDesID)
+
+        <section class="main">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="widget">
+                            <div class="widget-header">
+                                <h3>Edição de Registro</h3>
+                            </div>
+                            <div class="widget-body">
+                                <form>
+                                    <div class="form-group">
+                                        <input class="form-control input-lg" required id="Valor" name="Valor" type="text" value="@Model.Valor.ToString()" onkeyup="SubstituiVirgulaPorPonto(this)">
+                                    </div>
+                                    <div class="form-group">
+                                        @if (Model.Categoria.ToString() == "Receita")
+                                        {
+                                            <select class="form-control input-lg" id="Categoria" name="Categoria">
+                                                <option selected>Receita</option>
+                                                <option>Despesa</option>
+                                            </select>
+                                        }
+                                        else
+                                        {
+                                            <select class="form-control input-lg" id="Categoria" name="Categoria">
+                                                <option>Receita</option>
+                                                <option selected>Despesa</option>
+                                            </select>
+                                        }
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control input-lg" id="Data" name="Data" value="@Model.Data.ToString("yyyy-MM-dd")" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control input-lg" id="Observacao" name="Observacao" placeholder="Observação" value="@Model.Observacao.ToString()" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        
+                                        <input style="background-color: forestgreen" type="submit" class="btn btn-block btn-custom" value="Salvar"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
