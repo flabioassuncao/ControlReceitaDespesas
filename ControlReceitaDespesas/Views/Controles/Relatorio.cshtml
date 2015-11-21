@@ -47,11 +47,8 @@
                             <h4 class="panel-title text-left">Relatorio do tipo @ViewBag.Tipo</h4>
                         </div>
                         <div class="panel-body">
-
-
                             @if (ViewBag.Tipo == "Agrupada")
                             {
-
                                 <table class="table table-bordered">
                                     <tr class="active">
                                         <th>
@@ -69,7 +66,6 @@
                                             @Html.DisplayNameFor(model => model.Observacao)
                                         </th>
                                     </tr>
-
                                     <tr class="active">
                                         <th>
                                         </th>
@@ -77,20 +73,15 @@
                                             <b>Receitas</b>
                                         </th>
                                         <th>
-
                                         </th>
                                         <th>
-
                                         </th>
                                         <th>
-
                                         </th>
                                     </tr>
-
                                     @{
                                         decimal valorReceitas = 0;
                                     }
-
                                     @foreach (var item in Model.Where(g => g.Categoria == "Receita"))
                                     {
                                         <tr>
@@ -110,8 +101,6 @@
 
                                         valorReceitas += item.Valor;
                                     }
-
-
                                     <tr class="active">
                                         <td></td>
                                         <td>
@@ -123,7 +112,6 @@
                                         <td></td>
                                         <td></td>
                                     </tr>
-
                                     <tr class="active">
                                         <th>
                                         </th>
@@ -131,21 +119,15 @@
                                             <b>Despesas</b>
                                         </th>
                                         <th>
-
                                         </th>
                                         <th>
-
                                         </th>
                                         <th>
-
                                         </th>
                                     </tr>
-
                                     @{
                                         decimal valorDespesas = 0;
                                     }
-
-
                                     @foreach (var item in Model.Where(g => g.Categoria == "Despesa"))
                                     {
                                         <tr>
@@ -162,11 +144,8 @@
                                                 @Html.DisplayFor(modelItem => item.Observacao)
                                             </td>
                                         </tr>
-
                                         valorDespesas += item.Valor;
                                     }
-
-
                                     <tr class="active">
                                         <td></td>
                                         <td>
@@ -178,7 +157,6 @@
                                         <td></td>
                                         <td></td>
                                     </tr>
-
                                     <tr>
                                         <td>
                                             <b>Somátorio Geral</b>
@@ -187,17 +165,12 @@
                                         <td>
                                             @{
                                                 decimal somatorio = valorReceitas - valorDespesas;
-
                                                 <b>R$@somatorio</b>
                                             }
                                         </td>
                                         <td></td>
                                         <td></td>
-
                                     </tr>
-
-
-
                                 </table>
                                                 }
                                                 else
@@ -219,12 +192,10 @@
                                                                 @Html.DisplayNameFor(model => model.Observacao)
                                                             </th>
                                                         </tr>
-
                                                         @foreach (var item in Model)
                                                         {
                                                             <tr>
                                                                 <th>
-
                                                                 </th>
                                                                 <td>
                                                                     @Html.DisplayFor(modelItem => item.Categoria)
@@ -240,24 +211,18 @@
                                                                 </td>
                                                             </tr>
                                                         }
-
                                                         @{
                                                             decimal valorReceitas = 0, valorDespesas = 0;
-
-
                                                             foreach (var item in Model.Where(g => g.Categoria == "Receita"))
                                                             {
                                                                 valorReceitas += item.Valor;
                                                             }
-
                                                             foreach (var item in Model.Where(g => g.Categoria == "Despesa"))
                                                             {
                                                                 valorDespesas += item.Valor;
                                                             }
-
                                                             decimal somatorio = valorReceitas - valorDespesas;
                                                         }
-
                                                         <tr>
                                                             <td>
                                                                 <b>Somátorio Geral</b>
@@ -265,18 +230,15 @@
                                                             <td></td>
                                                             <td>
                                                                 @{
-
                                                                     <b>R$@somatorio</b>
                                                                 }
                                                             </td>
                                                             <td></td>
                                                             <td></td>
                                                         </tr>
-
                                                     </table>
                                                                     }
                             @Html.ActionLink("Voltar", "Index", new { }, htmlAttributes: new { @class = "label label-success" })
-                            
                         </div>
                     </div>
                 </div>
