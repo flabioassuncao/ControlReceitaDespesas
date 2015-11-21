@@ -5,47 +5,63 @@
     Layout = "~/Views/Shared/_LayoutControleF.cshtml";
 }
 
-<h2>Details</h2>
+<section class="category-wrapper">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-3 col-sm-2">
+            </div>
+            <div class="col-md-9 col-sm-10">
+                <div class="col-md-7 col-sm-11">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title text-left">Detalhes</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <hr />
+                                <dl class="dl-horizontal">
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Valor)
+                                    </dt>
 
-<div>
-    <h4>RecDes</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Valor)
-        </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Valor)
+                                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Valor)
-        </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Categoria)
+                                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Categoria)
-        </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Categoria)
+                                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Categoria)
-        </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Data)
+                                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Data)
-        </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Data)
+                                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Data)
-        </dd>
+                                    <dt>
+                                        @Html.DisplayNameFor(model => model.Observacao)
+                                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Observacao)
-        </dt>
+                                    <dd>
+                                        @Html.DisplayFor(model => model.Observacao)
+                                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Observacao)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RecDesID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                                </dl>
+                            </div>
+                            <p>
+                                @Html.ActionLink("Editar", "Edit", new { id = Model.RecDesID }) |
+                                @Html.ActionLink("Voltar", "Index")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
