@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ControlReceitaDespesas.Models.RecDes>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "FINANWEB - INICIO";
     Layout = "~/Views/Shared/_LayoutControleF.cshtml";
 }
 
@@ -24,8 +24,8 @@
                             <div class="col-md-3 text-right  cat-search-input">
                                 <select class="form-control" name="categoria">
                                     <option>Receitas e Despesas</option>
-                                    <option>Receita</option>
-                                    <option>Despesa</option>
+                                    <option>Receitas</option>
+                                    <option>Despesas</option>
                                 </select>
                             </div>
                             <div class="col-md-3  cat-search-input">
@@ -67,9 +67,9 @@
                                             <td>@Html.DisplayFor(modelItem => item.Data)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Observacao)</td>
                                             <td>
-                                                @Html.ActionLink("Edit", "Edit", new { id = item.RecDesID }, htmlAttributes: new { @class = "label label-success" }) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.RecDesID }, htmlAttributes: new { @class = "label label-warning" }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.RecDesID }, htmlAttributes: new { @class = "label label-danger" })
+                                                @Html.ActionLink("Editar", "Edit", new { id = item.RecDesID }, htmlAttributes: new { @class = "label label-success" }) |
+                                                @Html.ActionLink("Detalhes", "Details", new { id = item.RecDesID }, htmlAttributes: new { @class = "label label-warning" }) |
+                                                @Html.ActionLink("Deletar", "Delete", new { id = item.RecDesID }, htmlAttributes: new { @class = "label label-danger" })
                                             </td>
                                         </tr>
                                     }
